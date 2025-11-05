@@ -2,7 +2,7 @@
 
 An AI-driven, graph-based visual platform for automating the ingestion, correlation, and analysis of multi-source cybersecurity threat intelligence.
 
-![Cortex Dashboard Screenshot](image_5378c1.png)
+![Cortex Dashboard: Graph view with dynamic node details panel](assets/03-main-dashboard.png)
 
 ---
 
@@ -20,7 +20,7 @@ It moves analysts from manual text review to a dynamic, queryable visual interfa
 
 ---
 
-## Core Features
+## 🚀 Core Features
 
 Cortex is not just a dashboard; it's a complete, professional-grade ETL (Extract, Transform, Load) pipeline built with a modern tech stack.
 
@@ -34,7 +34,7 @@ Unstructured text is sent to a Large Language Model (**Anthropic Claude 3 Haiku*
 Extracted entities are not stored in a simple table; they are loaded into a **Neo4j graph database**. Using `MERGE` logic, the system automatically correlates entities, ensuring that a mention of "ShadowStalker" from a SANS report and a "ShadowStalker" mention from a Unit42 report point to the *exact same node* in the graph.
 
 ### 4. Interactive Graph Visualization
-A **Plotly Dash** and **Dash-Cytoscape** front-end provides a rich, interactive visualization of the correlated data. The UI is built with Dash Bootstrap Components (DBC) using a professional dark theme ("Cyborg").
+A **Plotly Dash** and **Dash-Cytoscape** front-end provides a rich, interactive visualization of the correlated data. The UI is built with Dash Bootstrap Components (DBC) using a professional dark theme ("Cyborg") and features a dynamic details panel that queries and displays live connection data.
 
 ### 5. Natural Language Query (NLQ)
 Analysts can query the graph using plain English. A secondary AI prompt translates questions like "What tools does ShadowStalker use?" into a precise **Cypher** query, which then filters the graph in real-time.
@@ -42,12 +42,12 @@ Analysts can query the graph using plain English. A secondary AI prompt translat
 ### 6. Human-in-the-Loop (HITL) Staging
 **This is the project's most professional feature.** To prevent AI "hallucinations" from corrupting the production database, Cortex implements a two-stage data pipeline:
 * **Staging:** All AI findings (nodes and relationships) are first written to the graph with a `status: 'pending'` property.
-* **Review Panel:** A separate, secure Dash application (`review_app.py`) allows a human analyst to review each pending finding, view its source article, and either **Approve** (setting `status: 'approved'`) or **Reject** (deleting) the data.
+* **Review Panel:** A separate, secure Dash application (`review_app.py`) allows a human analyst to review each pending node and relationship, view its source article, and either **Approve** (setting `status: 'approved'`) or **Reject** (deleting) the data.
 * **Production:** The main dashboard (`app.py`) **only** displays data that has `status: 'approved'`, ensuring 100% data quality and analyst control.
 
 ---
 
-##  Tech Stack & Architecture
+## 🔧 Tech Stack & Architecture
 
 * **Backend & Pipeline:** Python, Scrapy, Feedparser, BeautifulSoup4, `python-dotenv`
 * **Database:** Neo4j (Graph Database)
@@ -71,3 +71,4 @@ Analysts can query the graph using plain English. A secondary AI prompt translat
     * The main dashboard (port 8050) displays *only* data with `status: 'approved'`.
     * The analyst uses the NLQ to query the verified graph.
 
+    
