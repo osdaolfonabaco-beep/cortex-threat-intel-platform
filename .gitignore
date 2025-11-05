@@ -1,0 +1,25 @@
+# 1. Entorno Virtual (¡La Causa Principal del Problema!)
+.venv/
+venv/
+*.venv
+
+# 2. Caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 3. Archivos de Secretos (¡MUY IMPORTANTE!)
+.env
+.env.*
+
+# 4. Archivos de Datos Generados (No deben estar en Git)
+items_extraidos.json
+items.json
+
+# 5. Archivos de VS Code (Opcional pero recomendado)
+.vscode/
+
+# 6. Archivos de Sistema Operativo
+.DS_Store
+Thumbs.db
